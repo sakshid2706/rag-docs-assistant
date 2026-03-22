@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAG Search</title>
+</head>
+<body>
+    <h1>RAG Document Search</h1>
+
+    <input type="text" id="query" placeholder="Ask something..." size="50">
+    <button onclick="search()">Search</button>
+
+    <div id="results"></div>
+
+    <script>
+        async function search() {
+            const query = document.getElementById("query").value;
+
+            const response = await fetch("/search", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({query})
+            });
+
+            const data = await response.json();
+
+            let html = "";
+            data.forEach((res, i) => {
+                html += `<h3>Result ${i+1}</h3>`;
+                html += `<p><b>${res.title}</b></p>`;
+                html += `<p>${res.text.substring(0, 300)}...</p>`;
+                html += `<a href="${res.url}" target="_blank">Source</a><hr>`;
+            });
+
+            document.getElementById("results").innerHTML = html;
+        }
+    </script>
+</body>
+</html>
