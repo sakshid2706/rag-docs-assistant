@@ -50,7 +50,7 @@ An end-to-end Retrieval-Augmented Generation (RAG) system for semantic document 
 * Flask API for querying
 * Connects frontend with retrieval pipeline
 
-### Example
+# Example
 <img width="2936" height="1266" alt="image" src="https://github.com/user-attachments/assets/1384a822-682e-4c95-8c16-0e59f4a132fa" />
 
 
